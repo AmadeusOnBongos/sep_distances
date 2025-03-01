@@ -4,19 +4,26 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="78a90dce-8bc0-4574-8a84-c6a4faae428d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sep_distances.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codebase/mixed_graph.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/Graphs_for_testing.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/test_canonical_DAG.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/test_causal_order.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/test_get_CPDAG.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/test_get_acyclification.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/test_get_representative_of_MEC.py" afterDir="false" />
+    <list default="true" id="78a90dce-8bc0-4574-8a84-c6a4faae428d" name="Changes" comment="Some unit tests added. Several functions improved.">
+      <change afterPath="$PROJECT_DIR$/codebase/metrics.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codebase/utils.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/test_AIDs.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/test_SD_CPDAGs.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/test_SD_DAGs.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/test_SD_mixed.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/test_ZL_separator_invariance.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/test_c_metric_DAGs.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/test_find_minimal_separator_1.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/test_get_Markov_blanket.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/test_get_ancestors.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/test_get_possible_ancestors.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/test_is_d_separated.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/test_possibleparents_of.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/test_s_metric_DAGs.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/test_sc_metric_DAGs.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codebase/mixed_graph.py" beforeDir="false" afterPath="$PROJECT_DIR$/codebase/mixed_graph.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Graphs_for_testing.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Graphs_for_testing.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,6 +33,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Python Unit Test" />
         <option value="Python Script" />
       </list>
     </option>
@@ -56,23 +64,39 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Python.test_AIDs.executor": "Run",
+    "Python.test_SD_CPDAGs.executor": "Run",
+    "Python.test_SD_DAGs.executor": "Run",
+    "Python.test_SD_mixed.executor": "Run",
+    "Python.test_SDs_parent.executor": "Run",
+    "Python.test_ZL_separator_invariance.executor": "Run",
+    "Python.test_c_metric_DAGs.executor": "Run",
     "Python.test_canonical_DAG.executor": "Run",
     "Python.test_causal_order.executor": "Run",
+    "Python.test_find_minimal_separator_1.executor": "Run",
     "Python.test_get_CPDAG.executor": "Run",
+    "Python.test_get_Markov_blanket.executor": "Run",
     "Python.test_get_acyclification.executor": "Run",
+    "Python.test_get_ancestors.executor": "Run",
+    "Python.test_get_possible_ancestors.executor": "Run",
     "Python.test_get_representative_of_MEC.executor": "Run",
+    "Python.test_is_d_separated.executor": "Run",
+    "Python.test_possibleparents_of.executor": "Run",
+    "Python.test_s_metric_DAGs.executor": "Run",
+    "Python.test_sc_metric_DAGs.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "main",
-    "last_opened_file_path": "/Users/jowa05/GitHub/sep_distances/codebase"
+    "last_opened_file_path": "/Users/jowa05/GitHub/sep_distances/tests"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/tests" />
       <recent name="$PROJECT_DIR$/codebase" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.test_get_representative_of_MEC">
-    <configuration name="test_canonical_DAG" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Python.test_s_metric_DAGs">
+    <configuration name="test_SD_mixed" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="sep_distances" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -85,7 +109,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tests/test_canonical_DAG.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tests/test_SD_mixed.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -94,7 +118,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="test_causal_order" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="test_c_metric_DAGs" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="sep_distances" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -107,29 +131,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tests/test_causal_order.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="test_get_CPDAG" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="sep_distances" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tests/test_get_CPDAG.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tests/test_c_metric_DAGs.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -160,7 +162,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="test_get_representative_of_MEC" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="test_s_metric_DAGs" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="sep_distances" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -173,7 +175,29 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tests/test_get_representative_of_MEC.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tests/test_s_metric_DAGs.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="test_sc_metric_DAGs" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="sep_distances" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tests/test_sc_metric_DAGs.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -184,11 +208,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.test_get_representative_of_MEC" />
-        <item itemvalue="Python.test_get_CPDAG" />
+        <item itemvalue="Python.test_s_metric_DAGs" />
+        <item itemvalue="Python.test_c_metric_DAGs" />
+        <item itemvalue="Python.test_sc_metric_DAGs" />
         <item itemvalue="Python.test_get_acyclification" />
-        <item itemvalue="Python.test_causal_order" />
-        <item itemvalue="Python.test_canonical_DAG" />
+        <item itemvalue="Python.test_SD_mixed" />
       </list>
     </recent_temporary>
   </component>
@@ -208,6 +232,19 @@
       <option name="presentableId" value="Default" />
       <updated>1740388694186</updated>
     </task>
+    <task id="LOCAL-00001" summary="Some unit tests added. Several functions improved.">
+      <option name="closed" value="true" />
+      <created>1740669618925</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1740669618925</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Some unit tests added. Several functions improved." />
+    <option name="LAST_COMMIT_MESSAGE" value="Some unit tests added. Several functions improved." />
   </component>
 </project>

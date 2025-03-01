@@ -10,6 +10,7 @@ def generate_graphs():
     G3 = mixed.LabelledMixedGraph()
     G4 = mixed.LabelledMixedGraph()
     G5 = mixed.LabelledMixedGraph()
+    G6 = mixed.LabelledMixedGraph()
 
     empty = mixed.LabelledMixedGraph()
 
@@ -19,6 +20,7 @@ def generate_graphs():
         G3.add_node(i)
         G4.add_node(i)
         G5.add_node(i)
+        G6.add_node(i)
         empty.add_node(i)
 
     #simple causal chain
@@ -56,6 +58,14 @@ def generate_graphs():
     G5.add_directed('X6', 'X5')
     G5.add_directed('X5', 'X6')
 
-    return {'chain': G1,'with_bidirected': G2,'simple_collider': G3,'undirected_chain': G4,'cyclic': G5, 'empty': empty }
+    # inverse chain
+    G6.add_directed('X2', 'X1')
+    G6.add_directed('X3', 'X2')
+    G6.add_directed('X4', 'X3')
+    G6.add_directed('X5', 'X4')
+    G6.add_directed('X6', 'X5')
+
+
+    return {'chain': G1,'with_bidirected': G2,'simple_collider': G3,'undirected_chain': G4,'cyclic': G5, 'inverse_chain': G6, 'empty': empty }
 
 

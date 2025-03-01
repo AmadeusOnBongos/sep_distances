@@ -36,6 +36,8 @@ class LabelledMixedGraph:
 
         self.DAG = None
 
+        self.Markov_blankets = None
+
         for i, j in self._directed.keys():
             self._children[i].add(j)
             self._parents[j].add(i)
@@ -378,6 +380,8 @@ class LabelledMixedGraph:
             self._children[parent].remove(i)
         del self._parents[i]
 
+        del self._possibleparents[i]
+
         for child in self._children[i]:
             self._parents[child].remove(i)
         del self._children[i]
@@ -408,6 +412,7 @@ class LabelledMixedGraph:
         try:
             label = self._directed.pop((i, j))
             self._parents[j].remove(i)
+            self._possibleparents[j].remove(i)
             self._children[i].remove(j)
             return label
         except KeyError as e:
@@ -435,6 +440,8 @@ class LabelledMixedGraph:
             label = self._undirected.pop(frozenset({i, j}))
             self._neighbors[i].remove(j)
             self._neighbors[j].remove(i)
+            self._possibleparents[i].remove(j)
+            self._possibleparents[j].remove(i)
             return label
         except KeyError as e:
             if ignore_error:
@@ -563,7 +570,7 @@ class LabelledMixedGraph:
     def get_canonical_directed_graph(self):
         G = copy.deepcopy(self)
         G.latents = set()
-        G.selectors = set()
+        #G.selectors = set()
         for edge in G._bidirected.keys():
             node_name = 'L_'+str(tuple(edge)[0])+'_'+str(tuple(edge)[1])
             G.add_node(node_name)
@@ -715,7 +722,7 @@ class LabelledMixedGraph:
                         action_taken3 = rule3(representative)
                 self._representative = representative
 
-    def get_Markov_Blankets(self):
+    def get_Markov_blankets(self):
         '''compute the Markov blanket for nodes in DAGs'''
         self.Markov_blankets = {}
         for node in self._nodes:
@@ -789,17 +796,19 @@ class LabelledMixedGraph:
         return self.nodes - x - z - forward_visited - backward_visited
 
     def get_possible_ancestors(self,node):
-        pancestors = set([])
+        pancestors = set()
         pparents = self.possibleparents_of(node)
-        if bool(pparents) is True:
+        if len(pparents) >0:
             pancestors = pancestors.union(pparents)
             #print(pancestors)
             stop = False
             while stop is False:
-                new_additions = set([])
+                new_additions = set()
                 for i in pancestors:
-                    new_additions.union(self.possibleparents_of(i))
-                enlarged = pancestors.union(new_additions)
+                    new_additions = new_additions.union(self.possibleparents_of(i))
+                if node in new_additions:
+                    new_additions.remove(node)
+                enlarged = copy.deepcopy(pancestors).union(new_additions)
                 if enlarged == pancestors:
                     stop = True
                 pancestors = enlarged
@@ -808,17 +817,20 @@ class LabelledMixedGraph:
         return pancestors
 
     def get_ancestors(self,node):
-        ancestors = set([])
+        ancestors = set()
         parents = self.parents_of(node)
-        if bool(parents) is True:
+        if len(parents) >0:
             ancestors = ancestors.union(parents)
-            #print(pancestors)
+            #print(ancestors)
             stop = False
             while stop is False:
-                new_additions = set([])
+                new_additions = set()
                 for i in ancestors:
-                    new_additions.union(self.parents_of(i))
-                enlarged = ancestors.union(new_additions)
+                    #print(i)
+                    #print(self.parents_of(i))
+                    new_additions = new_additions.union(self.parents_of(i))
+                #print(new_additions)
+                enlarged = copy.deepcopy(ancestors).union(new_additions)
                 if enlarged == ancestors:
                     stop = True
                 ancestors = enlarged
@@ -865,10 +877,12 @@ class LabelledMixedGraph:
 
         def insert_v_structures(skeleton,v_structures):
             for (i,j,k) in v_structures:
-                skeleton.add_directed(i,j)
+
                 skeleton.remove_undirected(i, j)
-                skeleton.add_directed(k, j)
+                skeleton.add_directed(i, j)
+
                 skeleton.remove_undirected(k, j)
+                skeleton.add_directed(k, j)
 
         def rule1(skeleton):
             action_taken = False
@@ -879,8 +893,9 @@ class LabelledMixedGraph:
                         to_be_oriented.append((j,k))
                         action_taken = True
             for (j,k) in to_be_oriented:
-                skeleton.add_directed(j, k)
+
                 skeleton.remove_undirected(j, k)
+                skeleton.add_directed(j, k)
             return action_taken
 
         def rule2(skeleton):
@@ -892,8 +907,9 @@ class LabelledMixedGraph:
                         to_be_oriented.append((i, k))
                         action_taken = True
             for (i,k) in to_be_oriented:
-                skeleton.add_directed(i, k)
+
                 skeleton.remove_undirected(i, k)
+                skeleton.add_directed(i, k)
             return action_taken
 
         def rule3(skeleton):
@@ -907,8 +923,9 @@ class LabelledMixedGraph:
                                 to_be_oriented.append((i, j))
                                 action_taken = True
             for (i,j) in to_be_oriented:
-                skeleton.add_directed(i, j)
+
                 skeleton.remove_undirected(i, j)
+                skeleton.add_directed(i, j)
             return action_taken
 
 
