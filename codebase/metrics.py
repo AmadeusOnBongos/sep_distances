@@ -467,10 +467,10 @@ def SD_CPDAGs(graph1,graph2,type='pparent',normalized = True, MB_enhanced = Fals
             if not G_1_rep.is_d_separated({X}, {Y}, set(separable_node_pairs[(X, Y)])):
                 error_count += 1
 
-        if normalized == True:
-            return 2 * error_count / (N * (N - 1))
-        else:
-            return error_count
+            if normalized == True:
+                return 2 * error_count / (N * (N - 1))
+            else:
+                return error_count
 
         if type == 'ZL':
 
