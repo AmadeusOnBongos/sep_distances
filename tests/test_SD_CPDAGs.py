@@ -7,6 +7,7 @@ test_graphs = G_testing.generate_graphs()
 
 
 G1 = test_graphs['simple_collider'].get_CPDAG()
+print(G1)
 G2 = test_graphs['undirected_chain']
 
 G3 = test_graphs['empty']

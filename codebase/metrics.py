@@ -1,5 +1,5 @@
 
-from codebase import mixed_graph as mixed
+#from codebase import mixed_graph as mixed
 import networkx as nx
 import numpy as np
 import copy
@@ -11,22 +11,43 @@ import gadjid
 
 #-------------------SHD---------------------
 
-def SHD(graph1,graph2, normalized = True):
+#def SHD(graph1,graph2, normalized = True):
+#    if not graph1.nnodes == graph2.nnodes:
+#        raise ValueError('Graphs have different number of nodes')
+#    else:
+#        adj_1 = nx.adjacency_matrix(graph1.to_nx())
+#        adj_2 = nx.adjacency_matrix(graph2.to_nx())
+#        diff = np.abs(adj_1-adj_2)
+#        diff = diff + diff.transpose()    #we do not want to count wrong orientations twice as strongly as missing edges
+#        diff[diff > 1] = 1
+#        total_nb_variables = adj_1.shape[0]
+#        normalization = total_nb_variables*(total_nb_variables-1)/2
+#        #print(normalization)
+#        if normalized == True:
+#            return np.sum(diff)/(2*normalization)
+#        else:
+#            return np.sum(diff)/2
+
+def SHD_DAGs(graph1,graph2, normalized = True):
     if not graph1.nnodes == graph2.nnodes:
         raise ValueError('Graphs have different number of nodes')
     else:
-        adj_1 = nx.adjacency_matrix(graph1.to_nx())
-        adj_2 = nx.adjacency_matrix(graph2.to_nx())
-        diff = np.abs(adj_1-adj_2)
-        diff = diff + diff.transpose()    #we do not want to count wrong orientations twice as strongly as missing edges
-        diff[diff > 1] = 1
-        total_nb_variables = adj_1.shape[0]
-        normalization = total_nb_variables*(total_nb_variables-1)/2
-        #print(normalization)
+        diff = 0
+        node_list = list(graph1.nodes)
+        for i in node_list:
+            for j in node_list:
+                if (i, j) in graph1._directed.keys() and (i, j) not in graph2._directed.keys():
+                    diff += 1
+                if (i, j) in graph2._directed.keys() and (i, j) not in graph1._directed.keys():
+                    diff += 1
+
+        N = graph1.nnodes
+
+        normalization = N*(N-1)/2
         if normalized == True:
-            return np.sum(diff)/(2*normalization)
+            return diff/normalization
         else:
-            return np.sum(diff)/2
+            return diff
 
 def SHD_CPDAGs(graph1,graph2, normalized = True):
     if not graph1.nnodes == graph2.nnodes:
@@ -38,12 +59,14 @@ def SHD_CPDAGs(graph1,graph2, normalized = True):
             for j in node_list:
                 if (i, j) in graph1._directed.keys() and (i, j) not in graph2._directed.keys():
                     diff += 1
+                if (i, j) in graph2._directed.keys() and (i, j) not in graph1._directed.keys():
+                    diff += 1
 
         for i in node_list:
             for j in node_list[node_list.index(i)+1:]:
-                if frozenset((i, j)) in graph1._undirected.keys() and frozenset((i, j)) not in graph2._undirected.keys():
+                if frozenset((i, j)) in graph1._undirected.keys() and frozenset((i, j)) not in graph2._undirected.keys() and (i,j) not in graph2._directed.keys() and (j,i) not in graph2._directed.keys(): #avoids double counts
                     diff += 1
-                if ((i, j) not in graph1._directed.keys() and (j, i) not in graph1._directed.keys() and frozenset((i, j)) not in graph1._undirected.keys()) and ((i, j) in graph2._directed.keys() or (j, i) in graph2._directed.keys() or frozenset((i, j)) in graph2._undirected.keys()):
+                if frozenset((i, j)) in graph2._undirected.keys() and frozenset((i, j)) not in graph1._undirected.keys() and (i,j) not in graph1._directed.keys() and (j,i) not in graph1._directed.keys():  #avoids double counts
                     diff += 1
 
         N = graph1.nnodes
@@ -64,12 +87,14 @@ def SHD_MAGs(graph1,graph2, normalized = True):
             for j in node_list:
                 if (i, j) in graph1._directed.keys() and (i, j) not in graph2._directed.keys():
                     diff += 1
+                if (i, j) in graph2._directed.keys() and (i, j) not in graph1._directed.keys():
+                    diff += 1
 
         for i in node_list:
             for j in node_list[node_list.index(i)+1:]:
-                if frozenset((i, j)) in graph1._bidirected.keys() and frozenset((i, j)) not in graph2._bidirected.keys():
+                if frozenset((i, j)) in graph1._bidirected.keys() and frozenset((i, j)) not in graph2._bidirected.keys() and (i, j) not in graph2._directed.keys() and (j, i) not in graph2._directed.keys():  # avoids double counts
                     diff += 1
-                if ((i, j) not in graph1._directed.keys() and (j, i) not in graph1._directed.keys() and frozenset((i, j)) not in graph1._bidirected.keys()) and ((i, j) in graph2._directed.keys() or (j, i) in graph2._directed.keys() or frozenset((i, j)) in graph2._bidirected.keys()):
+                if frozenset((i, j)) in graph2._bidirected.keys() and frozenset((i, j)) not in graph1._undirected.keys() and (i, j) not in graph1._directed.keys() and (j, i) not in graph1._directed.keys():  # avoids double counts
                     diff += 1
 
         N = graph1.nnodes
@@ -414,6 +439,14 @@ def SD_CPDAGs(graph1,graph2,type='pparent',normalized = True, MB_enhanced = Fals
 
         G_1_rep = G_1._representative
 
+        if type == 'ZL':
+
+            if G_2._representative is None:
+                G_2.get_representative_of_MEC()
+            G_2_rep = G_2._representative
+
+            return SD_DAGs(G_1_rep, G_2_rep, type='ZL', normalized=normalized)
+
         if type == 'pparent':
 
 
@@ -427,10 +460,9 @@ def SD_CPDAGs(graph1,graph2,type='pparent',normalized = True, MB_enhanced = Fals
 
 
             for (node1, node2) in itertools.combinations(G_2.nodes, r=2):
-                if not ((node1, node2) in G_2._directed or (node2, node1) in G_2._directed or frozenset({node1, node2}) in G_2._undirected or frozenset({node1, node2})in G_2._undirected):
-                    separable_node_pairs[(node1, node2)] = set(G_2.possibleparents_of(node1)).union(
-                        set(G_2.possibleparents_of(node2))) -{node1} -{node2}
-            #print(separable_node_pairs)
+                if not ((node1, node2) in G_2._directed or (node2, node1) in G_2._directed or frozenset({node1, node2}) in G_2._undirected):
+                    separable_node_pairs[(node1, node2)] = set(G_2.possibleparents_of(node1)).union(set(G_2.possibleparents_of(node2))) -{node1} -{node2}
+                    #print(node1, node2, separable_node_pairs[(node1, node2)])
 
         if type == 'pancestor':
 
@@ -461,24 +493,18 @@ def SD_CPDAGs(graph1,graph2,type='pparent',normalized = True, MB_enhanced = Fals
 
 
         error_count = 0
+        #print(separable_node_pairs)
         for (X, Y) in separable_node_pairs.keys():
 
             #print({X},{Y},separable_node_pairs[(X,Y)])
             if not G_1_rep.is_d_separated({X}, {Y}, set(separable_node_pairs[(X, Y)])):
+                #print('added')
                 error_count += 1
 
-            if normalized == True:
-                return 2 * error_count / (N * (N - 1))
-            else:
-                return error_count
-
-        if type == 'ZL':
-
-            if G_2._representative is None:
-                G_2.get_representative_of_MEC()
-            G_2_rep = G_2._representative
-
-            return SD_DAGs(G_1_rep, G_2_rep, type='ZL', normalized=normalized)
+        if normalized == True:
+            return 2 * error_count / (N * (N - 1))
+        else:
+            return error_count
 
     elif MB_enhanced is True:
 

@@ -4,8 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="78a90dce-8bc0-4574-8a84-c6a4faae428d" name="Changes" comment="More unit tests added. Metrics file improve and cleaned.">
+    <list default="true" id="78a90dce-8bc0-4574-8a84-c6a4faae428d" name="Changes" comment="Minor error corrected">
+      <change afterPath="$PROJECT_DIR$/tests/test_SHD.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codebase/metrics.py" beforeDir="false" afterPath="$PROJECT_DIR$/codebase/metrics.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_SD_CPDAGs.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_SD_CPDAGs.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,11 +49,13 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Python.metrics.executor": "Run",
     "Python.test_AIDs.executor": "Run",
     "Python.test_SD_CPDAGs.executor": "Run",
     "Python.test_SD_DAGs.executor": "Run",
     "Python.test_SD_mixed.executor": "Run",
     "Python.test_SDs_parent.executor": "Run",
+    "Python.test_SHD.executor": "Run",
     "Python.test_ZL_separator_invariance.executor": "Run",
     "Python.test_c_metric_DAGs.executor": "Run",
     "Python.test_canonical_DAG.executor": "Run",
@@ -66,6 +71,8 @@
     "Python.test_possibleparents_of.executor": "Run",
     "Python.test_s_metric_DAGs.executor": "Run",
     "Python.test_sc_metric_DAGs.executor": "Run",
+    "Python.test_sc_metric_cyclic.executor": "Run",
+    "Python.test_sc_metric_mixed_graphs.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "main",
     "last_opened_file_path": "/Users/jowa05/GitHub/sep_distances/tests"
@@ -77,8 +84,8 @@
       <recent name="$PROJECT_DIR$/codebase" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.test_s_metric_DAGs">
-    <configuration name="test_SD_mixed" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Python.test_SD_CPDAGs">
+    <configuration name="metrics" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="sep_distances" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -87,11 +94,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/codebase" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tests/test_SD_mixed.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/codebase/metrics.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -100,7 +107,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="test_c_metric_DAGs" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="test_SD_CPDAGs" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="sep_distances" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -113,7 +120,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tests/test_c_metric_DAGs.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tests/test_SD_CPDAGs.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -122,7 +129,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="test_get_acyclification" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="test_SD_DAGs" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="sep_distances" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -135,7 +142,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tests/test_get_acyclification.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tests/test_SD_DAGs.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -144,7 +151,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="test_s_metric_DAGs" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="test_SHD" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="sep_distances" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -157,7 +164,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tests/test_s_metric_DAGs.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tests/test_SHD.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -166,7 +173,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="test_sc_metric_DAGs" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="test_possibleparents_of" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="sep_distances" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -179,7 +186,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tests/test_sc_metric_DAGs.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tests/test_possibleparents_of.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -190,11 +197,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.test_s_metric_DAGs" />
-        <item itemvalue="Python.test_c_metric_DAGs" />
-        <item itemvalue="Python.test_sc_metric_DAGs" />
-        <item itemvalue="Python.test_get_acyclification" />
-        <item itemvalue="Python.test_SD_mixed" />
+        <item itemvalue="Python.test_SD_CPDAGs" />
+        <item itemvalue="Python.test_SD_DAGs" />
+        <item itemvalue="Python.test_possibleparents_of" />
+        <item itemvalue="Python.metrics" />
+        <item itemvalue="Python.test_SHD" />
       </list>
     </recent_temporary>
   </component>
@@ -230,12 +237,30 @@
       <option name="project" value="LOCAL" />
       <updated>1740841797931</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="More unit tests added.">
+      <option name="closed" value="true" />
+      <created>1740939619100</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1740939619100</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Minor error corrected">
+      <option name="closed" value="true" />
+      <created>1740939798555</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1740939798555</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Some unit tests added. Several functions improved." />
     <MESSAGE value="More unit tests added. Metrics file improve and cleaned." />
-    <option name="LAST_COMMIT_MESSAGE" value="More unit tests added. Metrics file improve and cleaned." />
+    <MESSAGE value="More unit tests added." />
+    <MESSAGE value="Minor error corrected" />
+    <option name="LAST_COMMIT_MESSAGE" value="Minor error corrected" />
   </component>
 </project>
