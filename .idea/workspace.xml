@@ -4,11 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="78a90dce-8bc0-4574-8a84-c6a4faae428d" name="Changes" comment="Minor error corrected">
-      <change afterPath="$PROJECT_DIR$/tests/test_SHD.py" afterDir="false" />
+    <list default="true" id="78a90dce-8bc0-4574-8a84-c6a4faae428d" name="Changes" comment="Further corrections and tests.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/codebase/metrics.py" beforeDir="false" afterPath="$PROJECT_DIR$/codebase/metrics.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_SD_CPDAGs.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_SD_CPDAGs.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Graphs_for_testing.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Graphs_for_testing.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_SD_mixed.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_SD_mixed.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_SHD.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_SHD.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,29 +85,7 @@
       <recent name="$PROJECT_DIR$/codebase" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.test_SD_CPDAGs">
-    <configuration name="metrics" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="sep_distances" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/codebase" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/codebase/metrics.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
+  <component name="RunManager" selected="Python.test_SD_mixed">
     <configuration name="test_SD_CPDAGs" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="sep_distances" />
       <option name="ENV_FILES" value="" />
@@ -143,6 +122,28 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tests/test_SD_DAGs.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="test_SD_mixed" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="sep_distances" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tests/test_SD_mixed.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -197,11 +198,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.test_SD_mixed" />
+        <item itemvalue="Python.test_SHD" />
         <item itemvalue="Python.test_SD_CPDAGs" />
         <item itemvalue="Python.test_SD_DAGs" />
         <item itemvalue="Python.test_possibleparents_of" />
-        <item itemvalue="Python.metrics" />
-        <item itemvalue="Python.test_SHD" />
       </list>
     </recent_temporary>
   </component>
@@ -253,7 +254,15 @@
       <option name="project" value="LOCAL" />
       <updated>1740939798555</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Further corrections and tests.">
+      <option name="closed" value="true" />
+      <created>1741012721401</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1741012721401</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -261,6 +270,7 @@
     <MESSAGE value="More unit tests added. Metrics file improve and cleaned." />
     <MESSAGE value="More unit tests added." />
     <MESSAGE value="Minor error corrected" />
-    <option name="LAST_COMMIT_MESSAGE" value="Minor error corrected" />
+    <MESSAGE value="Further corrections and tests." />
+    <option name="LAST_COMMIT_MESSAGE" value="Further corrections and tests." />
   </component>
 </project>

@@ -94,8 +94,10 @@ def SHD_MAGs(graph1,graph2, normalized = True):
             for j in node_list[node_list.index(i)+1:]:
                 if frozenset((i, j)) in graph1._bidirected.keys() and frozenset((i, j)) not in graph2._bidirected.keys() and (i, j) not in graph2._directed.keys() and (j, i) not in graph2._directed.keys():  # avoids double counts
                     diff += 1
-                if frozenset((i, j)) in graph2._bidirected.keys() and frozenset((i, j)) not in graph1._undirected.keys() and (i, j) not in graph1._directed.keys() and (j, i) not in graph1._directed.keys():  # avoids double counts
+
+                if frozenset((i, j)) in graph2._bidirected.keys() and frozenset((i, j)) not in graph1._bidirected.keys() and (i, j) not in graph1._directed.keys() and (j, i) not in graph1._directed.keys():  # avoids double counts
                     diff += 1
+
 
         N = graph1.nnodes
 
@@ -283,6 +285,7 @@ def SD_DAGs(graph1,graph2, type= 'parent', normalized = True, MB_enhanced = Fals
                    separable_node_pairs[(node1, node2)] = G_2.find_minimal_d_separator({node1},{node2},DAG_check=False)
 
             error_count = 0
+            #print(separable_node_pairs)
 
             for (X,Y) in separable_node_pairs.keys():
 
@@ -382,7 +385,7 @@ def SD_mixed_graphs(graph1,graph2, type= 'ZL', normalized = True, MB_enhanced = 
                                                                    DAG_check=False)
                     if not sep is None:
                         separable_node_pairs[(node1, node2)] = sep
-
+            #print(separable_node_pairs)
             error_count = 0
 
             for (X, Y) in separable_node_pairs.keys():

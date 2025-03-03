@@ -45,3 +45,14 @@ print(metrics.SHD_CPDAGs(G1,G3,normalized=False))
 
 print('SHD_CPDAGs(G3,G1,normalized=False)')
 print(metrics.SHD_CPDAGs(G3,G1,normalized=False))
+
+G4 = test_graphs['with_bidirected']
+
+print('SHD_MAGs(G2,G4,normalized=False)')
+print(metrics.SHD_MAGs(G2,G4,normalized=False))
+
+print('SHD_MAGs(G1,G4,normalized=False)')
+print(metrics.SHD_MAGs(G1,G4,normalized=False))
+
+print('SHD_MAGs(G4,G1,normalized=False)')
+print(metrics.SHD_MAGs(G4,G1,normalized=False))

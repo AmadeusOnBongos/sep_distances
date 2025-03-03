@@ -65,7 +65,26 @@ def generate_graphs():
     G6.add_directed('X5', 'X4')
     G6.add_directed('X6', 'X5')
 
+    #smaller graphs
 
-    return {'chain': G1,'with_bidirected': G2,'simple_collider': G3,'undirected_chain': G4,'cyclic': G5, 'inverse_chain': G6, 'empty': empty }
+    G7 = mixed.LabelledMixedGraph()
+    G8 = mixed.LabelledMixedGraph()
+
+    nodes2 = ['X1', 'X2', 'X3', 'X4']
+    for i in nodes2:
+        G7.add_node(i)
+        G8.add_node(i)
+
+    G7.add_directed('X1', 'X2')
+    G7.add_directed('X1', 'X3')
+    G7.add_directed('X1', 'X4')
+    G7.add_directed('X2', 'X3')
+    G7.add_directed('X2', 'X4')
+    G7.add_directed('X3', 'X4')
+
+
+
+
+    return {'chain': G1,'with_bidirected': G2,'simple_collider': G3,'undirected_chain': G4,'cyclic': G5, 'inverse_chain': G6, 'empty': empty, 'full_4_nodes': G7, 'empty_4_nodes': G8 }
 
 
