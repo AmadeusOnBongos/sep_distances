@@ -4,8 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="78a90dce-8bc0-4574-8a84-c6a4faae428d" name="Changes" comment="Minor changes to metrics file">
-      <change afterPath="$PROJECT_DIR$/ReadMe.md" afterDir="false" />
+    <list default="true" id="78a90dce-8bc0-4574-8a84-c6a4faae428d" name="Changes" comment="ReadMe and requirements.txt added.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -267,7 +266,15 @@
       <option name="project" value="LOCAL" />
       <updated>1741019359971</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="ReadMe and requirements.txt added.">
+      <option name="closed" value="true" />
+      <created>1741341917970</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1741341917970</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -277,6 +284,7 @@
     <MESSAGE value="Minor error corrected" />
     <MESSAGE value="Further corrections and tests." />
     <MESSAGE value="Minor changes to metrics file" />
-    <option name="LAST_COMMIT_MESSAGE" value="Minor changes to metrics file" />
+    <MESSAGE value="ReadMe and requirements.txt added." />
+    <option name="LAST_COMMIT_MESSAGE" value="ReadMe and requirements.txt added." />
   </component>
 </project>
