@@ -154,11 +154,11 @@ def SHD_MAGs(graph1,graph2, normalized = True):
 
 def parent_AID_DAGs(graph1,graph2, normalized = True):
     '''
-    Computes the Parent Adjustment Identification Distance (AID) between two DAGs.
+    Computes the Parent Adjustment Identification Distance (AID) between two DAGs using the implementation in the gadjid package.
     
     For each pair (X, Y), use the parent set of X as the adjustment set.
     Parent-AID counts how often this parent-based adjustment identifies
-    P(Y | do(X)) in one graph but not in the other..
+    P(Y | do(X)) in one graph but not in the other.
 
     Parameters:
     graph1, graph2: DAGs implemented in the LabelledMixedGraph class, see mixed_graph.py
@@ -180,7 +180,7 @@ def parent_AID_DAGs(graph1,graph2, normalized = True):
 
 def parent_AID_CPDAGs(graph1,graph2, normalized = True):
     '''
-    Computes the Parent Adjustment Identification Distance (AID) between two CPDAGs.
+    Computes the Parent Adjustment Identification Distance (AID) between two CPDAGs using the implementation in the gadjid package.
     
     For each pair (X, Y), use the parent set of X as the adjustment set.
     Parent-AID counts how often this parent-based adjustment identifies
@@ -227,7 +227,7 @@ def parent_AID_CPDAGs(graph1,graph2, normalized = True):
 
 def ancestor_AID_DAGs(graph1,graph2, normalized = True):
     '''
-    Computes the Ancestor Adjustment Identification Distance (AID) between two DAGs.
+    Computes the Ancestor Adjustment Identification Distance (AID) between two DAGs using the implementation in the gadjid package.
     
     For each pair (X, Y), use the ancestor set of X (excluding X and Y) as the adjustment set.
     Ancestor-AID counts how often this ancestor-based adjustment identifies
@@ -252,7 +252,7 @@ def ancestor_AID_DAGs(graph1,graph2, normalized = True):
 
 def ancestor_AID_CPDAGs(graph1,graph2, normalized = True):
     '''
-    Computes the Ancestor Adjustment Identification Distance (AID) between two CPDAGs.
+    Computes the Ancestor Adjustment Identification Distance (AID) between two CPDAGs using the implementation in the gadjid package.
     
     For each pair (X, Y), use the ancestor set of X (excluding X and Y) as the adjustment set.
     Ancestor-AID counts how often this ancestor-based adjustment identifies
@@ -462,8 +462,7 @@ def SD_mixed_graphs(graph1,graph2, type= 'ZL', normalized = True, MB_enhanced = 
     Computes the separation distance between two acyclic mixed graphs, measuring how many conditional
     independencies implied by graph2 are violated in graph1. Supports different
     separation strategies: 'parent' (union of parents), 'ancestor' (union of ancestors),
-    and 'ZL' (minimal d-separators). Optionally, Markov-blanket enhancement can be used
-    for a more refined comparison. Returns a normalized or raw count of disagreements,
+    and 'ZL' (minimal d-separators). Returns a normalized or raw count of disagreements,
     capturing how similar the graphs are in terms of the conditional independence
     structure they encode.
     
@@ -792,8 +791,8 @@ def metric_ungraded_DAGs(graph1, graph2, statements_to_be_compared, type ='sc'):
     For each triple (X, Y, Z), the function checks whether X and Y are d-separated given Z in both graphs. 
     
     The 'sc' metric counts all disagreements (both separations and connections), 
-    'c' (Markov) counts only disagreements where X and Y are dependent in graph1, 
-    and 's' (Faithfulness) counts only disagreements where X and Y are independent in graph1. 
+    'c' (Markov) counts only disagreements where X and Y are d-connected in graph1, 
+    and 's' (Faithfulness) counts only disagreements where X and Y are d-separated in graph1. 
     
     Parameters:
     graph1, graph2: directed acyclic graphs in the LabelledMixedGraph() format;
@@ -855,8 +854,8 @@ def metric_DAGs(graph1, graph2, type ='sc', max_order=None, randomize_higher_ord
     For each triple (X, Y, Z), the function checks whether X and Y are d-separated given Z in both graphs. 
     
     The 'sc' metric counts all disagreements (both separations and connections), 
-    'c' (Markov) counts only disagreements where X and Y are dependent in graph1, 
-    and 's' (Faithfulness) counts only disagreements where X and Y are independent in graph1. 
+    'c' (Markov) counts only disagreements where X and Y are d-connected in graph1, 
+    and 's' (Faithfulness) counts only disagreements where X and Y are d-separated in graph1. 
 
     Parameters:
     graph1, graph2: directed acyclic graphs in the LabelledMixedGraph() format;
@@ -936,8 +935,8 @@ def metric_CPDAGs(graph1, graph2, type ='sc', max_order=None, randomize_higher_o
     For each triple (X, Y, Z), the function checks whether X and Y are d-separated given Z in both graphs. 
     
     The 'sc' metric counts all disagreements (both separations and connections), 
-    'c' (Markov) counts only disagreements where X and Y are dependent in graph1, 
-    and 's' (Faithfulness) counts only disagreements where X and Y are independent in graph1. 
+    'c' (Markov) counts only disagreements where X and Y are d-connected in graph1, 
+    and 's' (Faithfulness) counts only disagreements where X and Y are d-separated in graph1. 
     
     Parameters:
     graph1, graph2: directed acyclic graphs in the LabelledMixedGraph() format;
@@ -1022,11 +1021,11 @@ def metric_CPDAGs(graph1, graph2, type ='sc', max_order=None, randomize_higher_o
 def metric_mixed_graphs(graph1, graph2, type ='sc', max_order=None, randomize_higher_order = 0, normalized= True, random_state = None, include_distance_dict = False):
     '''
     Implementation of s/c, s-metric and c-metric for mixed graphs including random approximations.
-    For each triple (X, Y, Z), the function checks whether X and Y are d-separated given Z in both graphs. 
+    For each triple (X, Y, Z), the function checks whether X and Y are m-separated given Z in both graphs. 
     
     The 'sc' metric counts all disagreements (both separations and connections), 
-    'c' (Markov) counts only disagreements where X and Y are dependent in graph1, 
-    and 's' (Faithfulness) counts only disagreements where X and Y are independent in graph1. 
+    'c' (Markov) counts only disagreements where X and Y are m-connected in graph1, 
+    and 's' (Faithfulness) counts only disagreements where X and Y are m-separated in graph1. 
     
     Parameters:
     graph1, graph2: directed acyclic graphs in the LabelledMixedGraph() format;
@@ -1110,11 +1109,11 @@ def metric_mixed_graphs(graph1, graph2, type ='sc', max_order=None, randomize_hi
 def metric_directed_cyclic_graphs(graph1, graph2, type ='sc', max_order=None, randomize_higher_order = 0, normalized= True, random_state = None, include_distance_dict = False):
     '''
     Implementation of s/c, s-metric and c-metric for directed graphs that may contain cycles. Includes random approximations.
-    For each triple (X, Y, Z), the function checks whether X and Y are d-separated given Z in both graphs. 
+    For each triple (X, Y, Z), the function checks whether X and Y are sigma-separated given Z in both graphs. 
     
     The 'sc' metric counts all disagreements (both separations and connections), 
-    'c' (Markov) counts only disagreements where X and Y are dependent in graph1, 
-    and 's' (Faithfulness) counts only disagreements where X and Y are independent in graph1. 
+    'c' (Markov) counts only disagreements where X and Y are sigma-connected in graph1, 
+    and 's' (Faithfulness) counts only disagreements where X and Y are sigma-separated in graph1. 
     
     Parameters:
     graph1, graph2: directed acyclic graphs in the LabelledMixedGraph() format;
