@@ -23,7 +23,7 @@ setup(
     url="https://github.com/JonasChoice/sep_distances",
     author="Jonas Wahl",
     author_email="jonas.wahl@dfki.de",
-    license="MIT AND (Apache-2.0 OR BSD-2-Clause)",
+    license="GPL-3.0-only",
     install_requires=[
         "gadjid>=0.1.0",
         "networkx>=3.4.2",
