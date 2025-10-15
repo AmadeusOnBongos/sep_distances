@@ -29,6 +29,20 @@ import gadjid
 #            return np.sum(diff)/2
 
 def SHD_DAGs(graph1,graph2, normalized = True):
+    '''
+    Computes the Structural Hamming Distance (SHD) between two DAGs.
+    
+    The SHD is defined as the number of edge additions, deletions, or 
+    reversals needed to transform one graph into the other.
+    
+    Parameters:
+    graph1, graph2: DAGs implemented in the LabelledMixedGraph class, see mixed_graph.py
+    normalized: Boolean, if True the SHD is divided by the number of possible edges
+    
+    Returns:
+    float: The SHD between the two graphs, normalized if specified.
+    '''
+
     if not graph1.nnodes == graph2.nnodes:
         raise ValueError('Graphs have different number of nodes')
     else:
@@ -50,6 +64,20 @@ def SHD_DAGs(graph1,graph2, normalized = True):
             return diff
 
 def SHD_CPDAGs(graph1,graph2, normalized = True):
+    '''
+    Computes the Structural Hamming Distance (SHD) between two CPDAGs.
+    
+    The SHD is defined as the number of edge additions, deletions, or
+    reversals needed to transform one graph into the other.
+    
+    Parameters:
+    graph1, graph2: CPDAGs implemented in the LabelledMixedGraph class, see mixed_graph.py
+    normalized: Boolean, if True the SHD is divided by the number of possible edges
+    
+    Returns:
+    float: The SHD between the two graphs, normalized if specified.
+    '''
+
     if not graph1.nnodes == graph2.nnodes:
         raise ValueError('Graphs have different number of nodes')
     else:
@@ -78,6 +106,20 @@ def SHD_CPDAGs(graph1,graph2, normalized = True):
             return diff
 
 def SHD_MAGs(graph1,graph2, normalized = True):
+    '''
+    Computes the Structural Hamming Distance (SHD) between two MAGs.
+    
+    The SHD is defined as the number of edge additions, deletions, or
+    reversals needed to transform one graph into the other.
+    
+    Parameters:
+    graph1, graph2: MAGs implemented in the LabelledMixedGraph class, see mixed_graph.py
+    normalized: Boolean, if True the SHD is divided by the number of possible edges
+    
+    Returns:
+    float: The SHD between the two graphs, normalized if specified.
+    '''
+
     if not graph1.nnodes == graph2.nnodes:
         raise ValueError('Graphs have different number of nodes')
     else:
@@ -111,6 +153,21 @@ def SHD_MAGs(graph1,graph2, normalized = True):
 
 
 def parent_AID_DAGs(graph1,graph2, normalized = True):
+    '''
+    Computes the Parent Adjustment Identification Distance (AID) between two DAGs using the implementation in the gadjid package.
+    
+    For each pair (X, Y), use the parent set of X as the adjustment set.
+    Parent-AID counts how often this parent-based adjustment identifies
+    P(Y | do(X)) in one graph but not in the other.
+
+    Parameters:
+    graph1, graph2: DAGs implemented in the LabelledMixedGraph class, see mixed_graph.py
+    normalized: Boolean, if True the AID is divided by the number of possible node pairs
+    
+    Returns:
+    float: The Parent AID between the two graphs, normalized if specified.
+    '''
+
     if not graph1.nnodes == graph2.nnodes:
         raise ValueError('Graphs have different number of nodes')
     else:
@@ -122,6 +179,21 @@ def parent_AID_DAGs(graph1,graph2, normalized = True):
             return gadjid.parent_aid(adj_1,adj_2,edge_direction="from row to column")[1]
 
 def parent_AID_CPDAGs(graph1,graph2, normalized = True):
+    '''
+    Computes the Parent Adjustment Identification Distance (AID) between two CPDAGs using the implementation in the gadjid package.
+    
+    For each pair (X, Y), use the parent set of X as the adjustment set.
+    Parent-AID counts how often this parent-based adjustment identifies
+    P(Y | do(X)) in one graph but not in the other.
+
+    Parameters:
+    graph1, graph2: CPDAGs implemented in the LabelledMixedGraph class, see mixed_graph.py
+    normalized: Boolean, if True the AID is divided by the number of possible node pairs
+    
+    Returns:
+    float: The Parent AID between the two graphs, normalized if specified.
+    '''
+
     if not graph1.nnodes == graph2.nnodes:
         raise ValueError('Graphs have different number of nodes')
     else:
@@ -154,6 +226,20 @@ def parent_AID_CPDAGs(graph1,graph2, normalized = True):
             return gadjid.parent_aid(adj_1,adj_2,edge_direction="from row to column")[1]
 
 def ancestor_AID_DAGs(graph1,graph2, normalized = True):
+    '''
+    Computes the Ancestor Adjustment Identification Distance (AID) between two DAGs using the implementation in the gadjid package.
+    
+    For each pair (X, Y), use the ancestor set of X (excluding X and Y) as the adjustment set.
+    Ancestor-AID counts how often this ancestor-based adjustment identifies
+    P(Y | do(X)) in one graph but not in the other.
+
+    Parameters:
+    graph1, graph2: DAGs implemented in the LabelledMixedGraph class, see mixed_graph.py
+    normalized: Boolean, if True the AID is divided by the number of possible node pairs
+    
+    Returns:
+    float: The Ancestor AID between the two graphs, normalized if specified.
+    '''
     if not graph1.nnodes == graph2.nnodes:
         raise ValueError('Graphs have different number of nodes')
     else:
@@ -165,6 +251,21 @@ def ancestor_AID_DAGs(graph1,graph2, normalized = True):
             return gadjid.ancestor_aid(adj_1, adj_2,edge_direction="from row to column")[1]
 
 def ancestor_AID_CPDAGs(graph1,graph2, normalized = True):
+    '''
+    Computes the Ancestor Adjustment Identification Distance (AID) between two CPDAGs using the implementation in the gadjid package.
+    
+    For each pair (X, Y), use the ancestor set of X (excluding X and Y) as the adjustment set.
+    Ancestor-AID counts how often this ancestor-based adjustment identifies
+    P(Y | do(X)) in one graph but not in the other.
+
+    Parameters:
+    graph1, graph2: CPDAGs implemented in the LabelledMixedGraph class, see mixed_graph.py
+    normalized: Boolean, if True the AID is divided by the number of possible node pairs
+    
+    Returns:
+    float: The Ancestor AID between the two graphs, normalized if specified.
+    '''
+    
     if not graph1.nnodes == graph2.nnodes:
         raise ValueError('Graphs have different number of nodes')
     else:
@@ -214,12 +315,26 @@ def sym_ancestor_AID_CPDAGs(graph1,graph2,normalized= True ):
 
 def SD_DAGs(graph1,graph2, type= 'parent', normalized = True, MB_enhanced = False):
 
-    '''Input:
-            graph1, graph2: DAGs implemented in the LabelledMixedGraph class, see mixed_graph.py
-            type: string, either 'parent', 'ancestor', or 'ZL'
-            normalized: Boolean
-            MB_enhanced: Boolean
-     '''
+    '''
+    Computes the separation distance between two DAGs, measuring how many conditional
+    independencies implied by graph2 are violated in graph1. Supports different
+    separation strategies: 'parent' (union of parents), 'ancestor' (union of ancestors),
+    and 'ZL' (minimal d-separators). Optionally, Markov-blanket enhancement can be used
+    for a more refined comparison. Returns a normalized or raw count of disagreements,
+    capturing how similar the graphs are in terms of the conditional independence
+    structure they encode.
+
+    Parameters:
+    graph1, graph2: DAGs implemented in the LabelledMixedGraph class, see mixed_graph.py
+    type: string, either 'parent', 'ancestor', or 'ZL'
+    normalized: Boolean
+    MB_enhanced: Boolean
+    
+    Returns:
+    float: The separation distance between the two graphs, normalized if specified.
+    '''
+
+    #Computation of separation distance in DAGs
     G_1 = graph1
     G_2 = graph2
 
@@ -344,14 +459,24 @@ def weighted_SD_DAGs(graph1,graph2,weight, type= 'parent',normalized = True, MB_
 
 def SD_mixed_graphs(graph1,graph2, type= 'ZL', normalized = True, MB_enhanced = False):
     '''
-    Computation of separation distance in acyclic mixed graphs.
+    Computes the separation distance between two acyclic mixed graphs, measuring how many conditional
+    independencies implied by graph2 are violated in graph1. Supports different
+    separation strategies: 'parent' (union of parents), 'ancestor' (union of ancestors),
+    and 'ZL' (minimal d-separators). Returns a normalized or raw count of disagreements,
+    capturing how similar the graphs are in terms of the conditional independence
+    structure they encode.
+    
     If your graphs are DAGs, SD_DAGs() offers more features.
-    Input:
-            graph1, graph2: DAGs implemented in the LabelledMixedGraph class, see mixed_graph.py
-            type: string, only option is 'ZL' at this moment
-            normalized: Boolean
-            MB_enhanced: Boolean, however the True option is not yet implemented.
-     '''
+    
+    Parameters:
+    graph1, graph2: DAGs implemented in the LabelledMixedGraph class, see mixed_graph.py
+    type: string, only option is 'ZL' at this moment
+    normalized: Boolean
+    MB_enhanced: Boolean, however the True option is not yet implemented.
+
+    Returns:
+    float: The separation distance between the two graphs, normalized if specified.
+    '''
 
     G_1 = graph1
     G_2 = graph2
@@ -414,12 +539,24 @@ def weighted_SD_mixed_graphs(graph1,graph2,weight, type= 'ZL',normalized = True,
 
 def SD_CPDAGs(graph1,graph2,type='pparent',normalized = True, MB_enhanced = False):
 
-    '''Input:
-            graph1, graph2: CPDAGs implemented in the LabelledMixedGraph class, see mixed_graph.py
-            type: string, either 'pparent', 'pancestor', or 'ZL'
-            normalized: Boolean
-            MB_enhanced: Boolean
-     '''
+    '''
+    Computes the separation distance between two CPDAGs, measuring how many conditional
+    independencies implied by graph2 are violated in graph1. Supports different
+    separation strategies: 'parent' (union of parents), 'ancestor' (union of ancestors),
+    and 'ZL' (minimal d-separators). Optionally, Markov-blanket enhancement can be used
+    for a more refined comparison. Returns a normalized or raw count of disagreements,
+    capturing how similar the graphs are in terms of the conditional independence
+    structure they encode.
+    
+    Parameters:
+    graph1, graph2: CPDAGs implemented in the LabelledMixedGraph class, see mixed_graph.py
+    type: string, either 'pparent', 'pancestor', or 'ZL'
+    normalized: Boolean
+    MB_enhanced: Boolean
+    
+    Returns:
+    float: The separation distance between the two graphs, normalized if specified.
+    '''
 
 
     G_1 = graph1
@@ -571,6 +708,20 @@ def sym_SD_CPDAGs(graph1,graph2, type= 'pparent',normalized= True, MB_enhanced =
 #------------------s/c-metrics-----------------
 
 def generate_triples(nodes, order=0, all=True, max_number=1, random_state=None):
+    '''
+    Generates a list of triples (X,Y,Z) where X and Y are singletons and Z is a set of size 'order'.
+    If all=True, all possible triples are generated, otherwise a random sample of size max_number is returned.
+    
+    Parameters:
+    nodes: list or set of nodes
+    order: size of the separating set
+    all: Boolean, if True all triples are generated, otherwise a random sample is returned
+    max_number: maximum number of triples to be generated if all=False
+    random_state: numpy random state for reproducibility
+    
+    Returns:
+    list of triples (X,Y,Z) where X and Y are tuples of size 1 and Z is a tuple of size 'order'
+    '''
 
     if random_state == None:
         random_state = np.random
@@ -635,7 +786,22 @@ def generate_triples(nodes, order=0, all=True, max_number=1, random_state=None):
             return triple_list
 
 def metric_ungraded_DAGs(graph1, graph2, statements_to_be_compared, type ='sc'):
-
+    '''
+    Implementation of ungraded s/c, s-metric and c-metric for directed acyclic graphs.
+    For each triple (X, Y, Z), the function checks whether X and Y are d-separated given Z in both graphs. 
+    
+    The 'sc' metric counts all disagreements (both separations and connections), 
+    'c' (Markov) counts only disagreements where X and Y are d-connected in graph1, 
+    and 's' (Faithfulness) counts only disagreements where X and Y are d-separated in graph1. 
+    
+    Parameters:
+    graph1, graph2: directed acyclic graphs in the LabelledMixedGraph() format;
+    statements_to_be_compared: list of triples (X,Y,Z) where X and Y are tuples of size 1 and Z is a tuple of any size;
+    type: options: string, 'sc', 'c' (alternative 'Markov') , 's' (alternative: 'Faithfulness');
+    
+    Returns:
+    float: the distance between the two graphs according to the specified metric.
+    '''
 
     distance = 0.0
 
@@ -683,17 +849,25 @@ def metric_ungraded_DAGs(graph1, graph2, statements_to_be_compared, type ='sc'):
             return distance
 
 def metric_DAGs(graph1, graph2, type ='sc', max_order=None, randomize_higher_order = 0, normalized= True, random_state = None, include_distance_dict = False):
-    '''implementation of s/c,s- and c-metric for directed acyclic graphs including random approximations.
-       Input:
+    '''
+    Implementation of s/c, s-metric and c-metric for directed acyclic graphs including random approximations.
+    For each triple (X, Y, Z), the function checks whether X and Y are d-separated given Z in both graphs. 
+    
+    The 'sc' metric counts all disagreements (both separations and connections), 
+    'c' (Markov) counts only disagreements where X and Y are d-connected in graph1, 
+    and 's' (Faithfulness) counts only disagreements where X and Y are d-separated in graph1. 
 
-       graph1, graph2: directed acyclic graphs in the LabelledMixedGraph() format;
-       type: options: string, 'sc', 'c' (alternative 'Markov') , 's' (alternative: 'Faithfulness');
-       max_order: int, maximal order up to which the metric is computed;
-       randomize_higher_order: int, if 0 no randomization, otherwise the number indicates the number of randomly chosen separation statements checked per order > max_order;
-       normalized: Boolean,
-       random_state: numpy RandomState object for randomization;
-       include_distance_dict: Boolean, if True, dictionary of checked statements and result is returned.
+    Parameters:
+    graph1, graph2: directed acyclic graphs in the LabelledMixedGraph() format;
+    type: options: string, 'sc', 'c' (alternative 'Markov') , 's' (alternative: 'Faithfulness');
+    max_order: int, maximal order up to which the metric is computed;
+    randomize_higher_order: int, if 0 no randomization, otherwise the number indicates the number of randomly chosen separation statements checked per order > max_order;
+    normalized: Boolean,
+    random_state: numpy RandomState object for randomization;
+    include_distance_dict: Boolean, if True, dictionary of checked statements and result is returned.
 
+    Returns:
+    float: the distance between the two graphs according to the specified metric, normalized if specified.
     '''
 
 
@@ -756,17 +930,25 @@ def metric_DAGs(graph1, graph2, type ='sc', max_order=None, randomize_higher_ord
 
 
 def metric_CPDAGs(graph1, graph2, type ='sc', max_order=None, randomize_higher_order = 0, normalized= True, random_state = None, include_distance_dict = False):
-    '''implementation of s/c,s- and c-metric for CPDAGs, including random approximations.
-       Input:
+    '''
+    Implementation of s/c, s-metric and c-metric for CPDAGs, including random approximations.
+    For each triple (X, Y, Z), the function checks whether X and Y are d-separated given Z in both graphs. 
+    
+    The 'sc' metric counts all disagreements (both separations and connections), 
+    'c' (Markov) counts only disagreements where X and Y are d-connected in graph1, 
+    and 's' (Faithfulness) counts only disagreements where X and Y are d-separated in graph1. 
+    
+    Parameters:
+    graph1, graph2: directed acyclic graphs in the LabelledMixedGraph() format;
+    type: options: string, 'sc', 'c' (alternative 'Markov') , 's' (alternative: 'Faithfulness');
+    max_order: int, maximal order up to which the metric is computed;
+    randomize_higher_order: int, if 0 no randomization, otherwise the number indicates the number of randomly chosen separation statements checked per order > max_order;
+    normalized: Boolean,
+    random_state: numpy RandomState object for randomization;
+    include_distance_dict: Boolean, if True, dictionary of checked statements and result is returned.
 
-       graph1, graph2: directed acyclic graphs in the LabelledMixedGraph() format;
-       type: options: string, 'sc', 'c' (alternative 'Markov') , 's' (alternative: 'Faithfulness');
-       max_order: int, maximal order up to which the metric is computed;
-       randomize_higher_order: int, if 0 no randomization, otherwise the number indicates the number of randomly chosen separation statements checked per order > max_order;
-       normalized: Boolean,
-       random_state: numpy RandomState object for randomization;
-       include_distance_dict: Boolean, if True, dictionary of checked statements and result is returned.
-
+    Returns:
+    float: the distance between the two graphs according to the specified metric, normalized if specified.
     '''
 
     if graph1._representative is None:
@@ -837,17 +1019,25 @@ def metric_CPDAGs(graph1, graph2, type ='sc', max_order=None, randomize_higher_o
                     return distance, distance_dict
 
 def metric_mixed_graphs(graph1, graph2, type ='sc', max_order=None, randomize_higher_order = 0, normalized= True, random_state = None, include_distance_dict = False):
-    '''implementation of s/c,s- and c-metric for mixed graphs including random approximations.
-       Input:
+    '''
+    Implementation of s/c, s-metric and c-metric for mixed graphs including random approximations.
+    For each triple (X, Y, Z), the function checks whether X and Y are m-separated given Z in both graphs. 
+    
+    The 'sc' metric counts all disagreements (both separations and connections), 
+    'c' (Markov) counts only disagreements where X and Y are m-connected in graph1, 
+    and 's' (Faithfulness) counts only disagreements where X and Y are m-separated in graph1. 
+    
+    Parameters:
+    graph1, graph2: directed acyclic graphs in the LabelledMixedGraph() format;
+    type: options: string, 'sc', 'c' (alternative 'Markov') , 's' (alternative: 'Faithfulness');
+    max_order: int, maximal order up to which the metric is computed;
+    randomize_higher_order: int, if 0 no randomization, otherwise the number indicates the number of randomly chosen separation statements checked per order > max_order;
+    normalized: Boolean,
+    random_state: numpy RandomState object for randomization;
+    include_distance_dict: Boolean, if True, dictionary of checked statements and result is returned.
 
-       graph1, graph2: directed acyclic graphs in the LabelledMixedGraph() format;
-       type: options: string, 'sc', 'c' (alternative 'Markov') , 's' (alternative: 'Faithfulness');
-       max_order: int, maximal order up to which the metric is computed;
-       randomize_higher_order: int, if 0 no randomization, otherwise the number indicates the number of randomly chosen separation statements checked per order > max_order;
-       normalized: Boolean,
-       random_state: numpy RandomState object for randomization;
-       include_distance_dict: Boolean, if True, dictionary of checked statements and result is returned.
-
+    Returns:
+    float: the distance between the two graphs according to the specified metric, normalized if specified.
     '''
 
     if graph1.nodes != graph2.nodes:
@@ -917,18 +1107,26 @@ def metric_mixed_graphs(graph1, graph2, type ='sc', max_order=None, randomize_hi
 
 
 def metric_directed_cyclic_graphs(graph1, graph2, type ='sc', max_order=None, randomize_higher_order = 0, normalized= True, random_state = None, include_distance_dict = False):
-    '''implementation of s/c,s- and c-metric for directed graphs that may contain cycles. Includes random approximations.
-           Input:
+    '''
+    Implementation of s/c, s-metric and c-metric for directed graphs that may contain cycles. Includes random approximations.
+    For each triple (X, Y, Z), the function checks whether X and Y are sigma-separated given Z in both graphs. 
+    
+    The 'sc' metric counts all disagreements (both separations and connections), 
+    'c' (Markov) counts only disagreements where X and Y are sigma-connected in graph1, 
+    and 's' (Faithfulness) counts only disagreements where X and Y are sigma-separated in graph1. 
+    
+    Parameters:
+    graph1, graph2: directed acyclic graphs in the LabelledMixedGraph() format;
+    type: options: string, 'sc', 'c' (alternative 'Markov') , 's' (alternative: 'Faithfulness');
+    max_order: int, maximal order up to which the metric is computed;
+    randomize_higher_order: int, if 0 no randomization, otherwise the number indicates the number of randomly chosen separation statements checked per order > max_order;
+    normalized: Boolean,
+    random_state: numpy RandomState object for randomization;
+    include_distance_dict: Boolean, if True, dictionary of checked statements and result is returned.
 
-           graph1, graph2: directed acyclic graphs in the LabelledMixedGraph() format;
-           type: options: string, 'sc', 'c' (alternative 'Markov') , 's' (alternative: 'Faithfulness');
-           max_order: int, maximal order up to which the metric is computed;
-           randomize_higher_order: int, if 0 no randomization, otherwise the number indicates the number of randomly chosen separation statements checked per order > max_order;
-           normalized: Boolean,
-           random_state: numpy RandomState object for randomization;
-           include_distance_dict: Boolean, if True, dictionary of checked statements and result is returned.
-
-        '''
+    Returns:
+    float: the distance between the two graphs according to the specified metric, normalized if specified.
+    '''
 
     if graph1.nodes != graph2.nodes:
         raise ValueError('graphs have different nodes!')
