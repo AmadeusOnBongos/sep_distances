@@ -1,6 +1,6 @@
 from codebase import mixed_graph as mixed
 
-import Graphs_for_testing as G_testing
+from ..tests import Graphs_for_testing as G_testing
 
 
 test_graphs = G_testing.generate_graphs()

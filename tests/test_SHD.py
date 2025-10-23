@@ -1,6 +1,6 @@
 from codebase import metrics
 
-import Graphs_for_testing as G_testing
+from ..tests import Graphs_for_testing as G_testing
 
 test_graphs = G_testing.generate_graphs()
 

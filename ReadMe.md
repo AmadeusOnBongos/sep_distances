@@ -5,7 +5,7 @@ Below is a short description of the important source files and how to use them.
 
 ## Files
 
-- `codebase/mixed_graph.py`
+- [`codebase/mixed_graph.py`](./codebase/mixed_graph.py)
 	- Contains the `LabelledMixedGraph` class: a compact representation for directed, undirected,
 		bidirected and semidirected edges. Useful helpers include conversion to/from NetworkX,
 		adding/removing edges, methods to compute skeletons and CPDAGs, finding v-structures,
@@ -13,7 +13,7 @@ Below is a short description of the important source files and how to use them.
 		(`get_canonical_directed_graph`, `get_acyclification`, etc.). This is the main graph data
 		structure used by the metrics.
 
-- `codebase/metrics.py`
+- [`codebase/metrics.py`](./codebase/metrics.py)
 	- Implements the distance/metric functions comparing two graphs. Major groups of functions:
 		- SHD (Structural Hamming Distance) for DAGs/CPDAGs/MAGs: `SHD_DAGs`, `SHD_CPDAGs`, `SHD_MAGs`.
 		- AID (Adjustment Identification Distances) wrappers using `gadjid` (e.g. `parent_AID_DAGs`).
@@ -22,7 +22,7 @@ Below is a short description of the important source files and how to use them.
 			graphs with cycles (`metric_DAGs`, `metric_CPDAGs`, `metric_mixed_graphs`, `metric_directed_cyclic_graphs`).
 		- Utilities: `generate_triples` (create separation statements) and several helper wrappers.
 
-- `tests/`
+- [`tests/`](./tests/)
 	- Unit tests covering behavior of `mixed_graph.py` and `metrics.py`. The tests include many focused
 		test cases (CPDAGs, DAGs, mixed graphs, AIDs, SHD, SD, s/c metrics, and related helpers). Run them
 		with `pytest` (instructions below).
@@ -80,19 +80,44 @@ pytest -q
 
 If you only want to run a single test file, use e.g. `pytest -q tests/test_SHD.py`.
 
+Currently, the test suite does not have any tests configured. Instead you should use run it once to check if all the requirements are installed correctly and as example usage for the respective metrics.
+
+If you want to run a test file directly, you need to change the way the imports are called. Currently the imports are structured in a way that work well with pytest, but won't work if you run the file directly.
+
+Example change in [tests/test_AIDs.py](tests/test_AIDs.py).:
+```python
+''' Comment out current imports '''
+# from codebase import mixed_graph as mixed
+# from codebase import metrics
+
+# from ..tests import Graphs_for_testing as G_testing
+
+''' Replace with the following '''
+import os
+import sys
+
+# add project root to sys.path
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+
+from codebase import mixed_graph as mixed
+from codebase import metrics
+
+import Graphs_for_testing as G_testing
+```
+
 ## Installation / requirements
 
-- Python 3.10+ is required (see `setup.cfg`).
-- The project depends on packages listed in `requirements.txt` / `setup.cfg`. Notable dependencies:
+- Python 3.10+ is required (see [`setup.cfg`](setup.cfg)).
+- The project depends on packages listed in [`requirements.txt`](requirements.txt) / [`setup.cfg`](setup.cfg). Notable dependencies:
 	- `networkx`, `numpy`, `scipy`, `gadjid` (optional but required for AID functions).
 
 ## License
 
-This project is released under the GNU General Public License v3 (GPLv3). See `LICENSE.txt` for the full text.
+This project is released under the GNU General Public License v3 (GPLv3). See [`LICENSE.txt`](LICENSE.txt) for the full text.
 
 ## Contact & attribution
 
 Original research and initial code: Jonas Wahl & Jakob Runge
 Package implementation and maintenance: Muhammad Haris Owais Ahmed
 
-If you have questions, bug reports, or performance suggestions, please open an issue or contact the maintainers listed in `setup.cfg`.
+If you have questions, bug reports, or performance suggestions, please open an issue or contact the maintainers listed in [`setup.cfg`](setup.cfg).

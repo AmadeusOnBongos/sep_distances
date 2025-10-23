@@ -1,6 +1,6 @@
 from codebase import mixed_graph as mixed
 
-import Graphs_for_testing as G_testing
+from ..tests import Graphs_for_testing as G_testing
 
 print('We first test a graph that is already a DAG')
 
