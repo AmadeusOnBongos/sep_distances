@@ -1,5 +1,4 @@
 from codebase import mixed_graph as mixed
-
 from ..tests import Graphs_for_testing as G_testing
 
 test_graphs = G_testing.generate_graphs()
@@ -33,3 +32,15 @@ print(G2)
 print('canonical directed:')
 print('nodes:', G2.get_canonical_directed_graph().nodes)
 print(G2.get_canonical_directed_graph())
+
+def test_canonical_DAGs(graph):
+    assert graph == graph.get_canonical_directed_graph()
+
+def test_canonical_DAGs_nodes(graph):
+    assert graph.nodes == graph.get_canonical_directed_graph().nodes
+
+# test_canonical_DAGs(G1)
+# test_canonical_DAGs(G2)
+
+# test_canonical_DAGs_nodes(G1)
+# test_canonical_DAGs_nodes(G2)

@@ -1,5 +1,5 @@
 import pytest
-import csv
+import json
 from codebase import metrics
 from ..tests import Graphs_for_testing as G_testing
 
@@ -14,12 +14,8 @@ def test_graphs():
 
 # Load ground truth values
 def load_ground_truth():
-    truth = {}
-    with open('test_answers/test_AIDs_answers.csv', 'r') as f:
-        reader = csv.DictReader(f)
-        for row in reader:
-            truth[row['test_name']] = float(row['result'])
-    return truth
+    with open('tests/test_answers/test_AIDs_answers.json', 'r') as f:
+        return json.load(f)
 
 ground_truth = load_ground_truth()
 
