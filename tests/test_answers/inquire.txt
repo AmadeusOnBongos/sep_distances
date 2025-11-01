@@ -26,11 +26,6 @@ test_is_d_separated.py
 test_s_metric_DAGs.py
 test_sc_metric_cyclic.py
 test_sc_metric_DAGs.py
-
-
-
-STILL NEED TO BE CONVERTED:
-
 test_sc_metric_mixed_graphs.py
 test_SD_CPDAGs.py
 test_SD_DAGs.py
