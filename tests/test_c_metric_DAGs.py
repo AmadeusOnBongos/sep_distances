@@ -14,7 +14,7 @@ def test_graphs():
 
 # Load ground truth values
 def load_ground_truth():
-    with open('tests/test_answers/test_AIDs_answers.json', 'r') as f:
+    with open('tests/test_answers/test_c_metric_DAGs_answers.json', 'r') as f:
         return json.load(f)
 
 ground_truth = load_ground_truth()
