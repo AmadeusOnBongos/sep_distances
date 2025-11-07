@@ -1,6 +1,8 @@
 This repository provides an implementation of separation distances and s/c-metrics
 for causal graphs as introduced in the paper ['Separation-based distance metrics for causal graphs'](https://proceedings.mlr.press/v258/wahl25b.html).
 
+You can also install it as a package using `pip install sep-distances`
+
 Below is a short description of the important source files and how to use them.
 
 ## Files
