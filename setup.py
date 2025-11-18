@@ -6,13 +6,18 @@ here = os.path.abspath(os.path.dirname(__file__))
 try:
     with open(os.path.join(here, "ReadMe.md"), "r", encoding="utf-8") as f:
         long_description = f.read()
+        try:
+            with open(os.path.join(here, "CHANGELOG.md"), "r", encoding="utf-8") as changelog_file:
+                long_description += "\n\n" + changelog_file.read()
+        except Exception as e:
+            print(f"Warning: Could not read CHANGELOG.md: {e}")
 except Exception as e:
     print(f"Warning: Could not read ReadMe.md: {e}")
     long_description = "An implementation of separation distances and s/c-metrics for causal graphs."
 
 setup(
     name="sep_distances",
-    version="1.0.0",
+    version="1.0.1",
     description="An implementation of separation distances and s/c-metrics for causal graphs as introduced in the paper 'Separation-based distance metrics for causal graphs'.",
     package_dir={"sep_distances": "codebase",
                  "sep_distances.tests": "tests"},
