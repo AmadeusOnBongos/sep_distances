@@ -7,7 +7,7 @@ Below is a short description of the important source files and how to use them.
 
 ## Files
 
-- [`codebase/mixed_graph.py`](./codebase/mixed_graph.py)
+- [`codebase/mixed_graph.py`](https://github.com/JonasChoice/sep_distances/blob/main/codebase/mixed_graph.py)
 	- Contains the `LabelledMixedGraph` class: a compact representation for directed, undirected,
 		bidirected and semidirected edges. Useful helpers include conversion to/from NetworkX,
 		adding/removing edges, methods to compute skeletons and CPDAGs, finding v-structures,
@@ -15,7 +15,7 @@ Below is a short description of the important source files and how to use them.
 		(`get_canonical_directed_graph`, `get_acyclification`, etc.). This is the main graph data
 		structure used by the metrics.
 
-- [`codebase/metrics.py`](./codebase/metrics.py)
+- [`codebase/metrics.py`](https://github.com/JonasChoice/sep_distances/blob/main/codebase/metrics.py)
 	- Implements the distance/metric functions comparing two graphs. Major groups of functions:
 		- SHD (Structural Hamming Distance) for DAGs/CPDAGs/MAGs: `SHD_DAGs`, `SHD_CPDAGs`, `SHD_MAGs`.
 		- AID (Adjustment Identification Distances) wrappers using `gadjid` (e.g. `parent_AID_DAGs`).
@@ -24,14 +24,14 @@ Below is a short description of the important source files and how to use them.
 			graphs with cycles (`metric_DAGs`, `metric_CPDAGs`, `metric_mixed_graphs`, `metric_directed_cyclic_graphs`).
 		- Utilities: `generate_triples` (create separation statements) and several helper wrappers.
 
-- [`tests/`](./tests/)
+- [`tests/`](https://github.com/JonasChoice/sep_distances/blob/main/tests/)
 	- Unit tests covering behavior of `mixed_graph.py` and `metrics.py`. The tests include many focused
 		test cases (CPDAGs, DAGs, mixed graphs, AIDs, SHD, SD, s/c metrics, and related helpers). Run them
 		with `pytest` (instructions below).
 
 ## Quick examples
 
-Basic usage pattern in [example.py](example.py) (import, construct graphs, compute a metric):
+Basic usage pattern in [example.py](https://github.com/JonasChoice/sep_distances/blob/main/example.py) (import, construct graphs, compute a metric):
 
 ```python
 from codebase import mixed_graph as mg
@@ -86,7 +86,7 @@ Currently, the test suite does not have any tests configured. Instead you should
 
 If you want to run a test file directly, you need to change the way the imports are called. Currently the imports are structured in a way that work well with pytest, but won't work if you run the file directly.
 
-Example change in [tests/test_AIDs.py](tests/test_AIDs.py).:
+Example change in [tests/test_AIDs.py](https://github.com/JonasChoice/sep_distances/blob/main/tests/test_AIDs.py).:
 ```python
 ''' Comment out current imports '''
 # from codebase import mixed_graph as mixed
@@ -109,17 +109,18 @@ import Graphs_for_testing as G_testing
 
 ## Installation / requirements
 
-- Python 3.10+ is required (see [`setup.cfg`](setup.cfg)).
-- The project depends on packages listed in [`requirements.txt`](requirements.txt) / [`setup.cfg`](setup.cfg). Notable dependencies:
+- Python 3.10+ is required (see [`setup.py`](https://github.com/JonasChoice/sep_distances/blob/main/setup.py)).
+- The project depends on packages listed in [`requirements.txt`](https://github.com/JonasChoice/sep_distances/blob/main/requirements.txt) / [`setup.py`](https://github.com/JonasChoice/sep_distances/blob/main/setup.py). Notable dependencies:
 	- `networkx`, `numpy`, `scipy`, `gadjid` (optional but required for AID functions).
 
 ## License
 
-This project is released under the GNU General Public License v3 (GPLv3). See [`LICENSE.txt`](LICENSE.txt) for the full text.
+This project is released under the GNU General Public License v3 (GPLv3). See [`LICENSE.txt`](https://github.com/JonasChoice/sep_distances/blob/main/LICENSE.txt) for the full text.
 
 ## Contact & attribution
 
-Original research and initial code: Jonas Wahl & Jakob Runge
-Package implementation and maintenance: Muhammad Haris Owais Ahmed
+Original research and initial code: Jonas Wahl & Jakob Runge.
 
-If you have questions, bug reports, or performance suggestions, please open an issue or contact the maintainers listed in [`setup.cfg`](setup.cfg).
+Package implementation and maintenance: Muhammad Haris Owais Ahmed.
+
+If you have questions, bug reports, or performance suggestions, please open an issue or contact the maintainers listed in [`setup.py`](https://github.com/JonasChoice/sep_distances/blob/main/setup.py).
